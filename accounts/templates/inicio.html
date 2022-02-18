@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'accounts/img/ico/home.ico' %}" type="image/x-icon">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        ol {
+            /* border: solid 1px black; */
+            width: 50%;
+        }
+
+        ol>li {
+            display: inline;
+        }
+
+        span {
+            color: green;
+
+        }
+
+        .form {
+            width: 75%;
+            margin: 0% auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar columns box">
+        <div class="navbar-item column"><a href="{% url 'accounts:perfil' %}">Mi perfil</a></div>
+        <div class="navbar-item column"><a href="{% url 'accounts:paginas' %}">Páginas</a></div>
+        <div class="navbar-item column"><a href="{% url 'accounts:logica-logout' %}">Salir</a></div>
+        <div class="navbar-item column"><a href="" class="button is-link is-outlined">{{message}}
+                {{usuario}}</a></div>
+    </nav>
+    <div class="box content form">
+        <form action="https://formspree.io/f/mnqwdnoe " method="post">
+            <label for="" class="label">
+                <input type="text" class="input" name="nombre" value="{{nombre}}">
+            </label>
+            <label for="" class="label">
+                <input type="text" name="apellido" class="input" value="{{apellido}}">
+            </label>
+            <label for="" class="label">
+                <input type="email" name="correo" class="input" value="{{correo}}">
+            </label>
+            <label for="" class="label">Motivo
+                <div class="select is-link">
+                    <select name="motivo" id="">
+                        <option value="post-caida">Post caido</option>
+                        <option value="">No puedo actualizar mis post</option>
+                        <option value="">Otros</option>
+                    </select>
+                </div>
+            </label>
+            <textarea name="mensaje" id="" cols="30" class="textarea has-fixed-size" rows="10">
+
+                </textarea>
+            <input type="submit" class="button is-success is-outlined" value="Contactar con el administrador">
+        </form>
+    </div>
+    <script>
+        var textarea = document.getElementsByClassName(".textarea")
+        textarea.innerText = ""
+    </script>
+</body>
+
+</html>

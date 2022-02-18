@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'accounts/img/ico/login.ico' %}" type="image/x-icon">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
+    <style>
+        .form {
+            width: 75%;
+            margin: 0% auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        {{message}}
+    </div>
+    <div class="form">
+        <form action="{% url 'accounts:login' %}" class="box content" method="get">
+
+            <div>
+                <label for="" class="label">Nombre de usuario
+                    <input type="text" class="input" name="user" placeholder="Ingrese su usuario">
+                </label>
+
+            </div>
+            <div class="content">
+                <label for="" class="label">Password
+                    <input type="text" name="pwd" class="input" placeholder="Ingrese su contraseña">
+                </label>
+            </div>
+            <button type="submit" class="button is-success"> Iniciar Sesión</button>
+        </form>
+    </div>
+    <div class="content form">
+        <a href="{% url 'accounts:crear-usuario' %}" class="tag is-link is-light is-large"
+            rel="noopener noreferrer">Crear
+            cuenta</a>
+    </div>
+
+
+</body>
+
+</html>

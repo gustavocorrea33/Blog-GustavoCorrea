@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'accounts/img/ico/paginas.ico' %}" type="image/x-icon">
+    <title>Post publicados</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+    <button class="button is-success">
+        <a href="{% url 'accounts:post' %}" style="color: white;">Crear entrada</a>
+    </button>
+    {% if cantidad_paginas == 0 %}
+    <p>No hay páginas aún</p>
+    {% else %}
+    {% for pagina in paginas %}
+    <div class="box">
+        <div class="content subtitle is-2">
+            {{pagina.titulo}}
+        </div>
+
+        {% for contenido in pagina.contenido %}
+        {% if forloop.counter0 < 20 %} {{contenido}} {% endif %} {% endfor %} <a
+            href="{% url 'accounts:contenido' pagina.id %}" class="tag is-link is-light is-medium" target="_blank">
+            Ver más</a> |
+            <a href="{% url 'accounts:actualizar-contenido' pagina.id %}" class="tag is-link is-light is-medium"
+                target="_blank">actualizar</a> |
+            <a href="{% url 'accounts:eliminar-contenido' pagina.id %}" class="tag is-link is-light is-medium"
+                target="_blank">eliminar</a>
+    </div>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <a href="{% url 'accounts:inicio' %}" class="tag is-link is-light is-medium">Volver atras</a>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'accounts/img/ico/crear_usuario.ico' %}" type="image/x-icon">
+    <title>Crear usuario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        .form {
+            width: 75%;
+            margin: 0% auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% if usuario_creado %}
+    <p class="notification is-danger">Este usuario ya existe en la bd, porfavor verifique los datos y vuelva a
+        intentarlo nuevamente
+    </p>
+    {% endif %}
+
+    <form action="{% url 'accounts:logica-crear-usuario' %}" class="form box content" method="post">
+        {% csrf_token %}
+        <div><label for="img" class="label">Coloca una imagen de perfil
+                <input type="file" id="img" name="img" value="{{img}}" class="input"
+                    placeholder="Selecciona la nueva imagen">
+            </label></div>
+        <div><label for="nombre" class="label">Ingrese su nombre<input id="nombre" type="text" class="input"
+                    name="nombre" value="{{nombre}}" required></label></div>
+        <div><label for="apellido" class="label">Ingrese su apellido<input id="apellido" type="text" class="input"
+                    name="apellido" value="{{apellido}}" required></label>
+        </div>
+        <div><label for="usuario" class="label">Ingrese su nombre de usuario<input id="usuario" type="text"
+                    class="input" name="usuario" value="{{usuario}}" required></label>
+        </div>
+        <div><label for="correo" class="label">Ingrese su correo<input id="correo" type="text" class="input"
+                    name="correo" value="{{correo}}" required></label></div>
+        <label for="descrip">Descripción</label>
+        <textarea name="descripcion" id="descrip" cols="30" rows="10" class="textarea has-fixed-size">
+            {{descripcion}}
+        </textarea>
+        <label for="link" class="label">Link de la página <input id="link" type="text" name="link" class="input"
+                value="{{link}}"></label>
+        <div class="notification is-danger">
+            {{message}}
+        </div>
+
+        <div><label for="pwd1" class="label">Ingrese su contraseña<input id="pwd1" type="text" name="pwd" class="input"
+                    value="{{pwd}}" required></label></div>
+        <div><label for="pwd2" class="label">Ingrese la contraseña nuevamente<input id="pwd2" class="input" type="text"
+                    name="pwd2" value="{{pwd2}}" required></label></div>
+        <input type="submit" class="button is-success is-outlined" value="Crear usuario">
+    </form>
+</body>
+
+</html>

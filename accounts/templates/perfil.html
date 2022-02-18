@@ -1,0 +1,61 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'accounts/img/ico/perfil.ico' %}" type="image/x-icon">
+    <title>Mi perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+    <h1 class="title is-1">
+        <p>Perfil del usuario</p>
+    </h1>
+    <div class="box form">
+        <form action="{% url 'accounts:actualizar-datos' %}" method="post">
+            {% csrf_token %}
+            <div>
+                <img src="{% static 'accounts/img/{{img}}' %}" alt="foto de perfil del usuario">
+                <div>
+                    <label for="file" class="label">
+                        <input type="file" class="input" id="file" name="img" placeholder="Selecciona la nueva imagen">
+                    </label>
+                </div>
+            </div>
+            <div>
+                <label for="usuario" class="label">Usuario <input type="text" id="usuario" class="input" name="usuario"
+                        value="{{usuario}}"></label>
+            </div>
+            <div>
+                <label for="correo" class="label">correo <input id="correo" type="text" name="correo" class="input"
+                        value="{{correo}}"></label>
+            </div>
+            <div>
+                <label for="text" class="label">Descripción</label>
+                <textarea id="text" name="descripcion" class="textarea has-fixed-size" id="" cols="105" rows="10">
+                    {{descripcion}}
+                </textarea>
+            </div>
+            <div>
+                <label for="link" class="label">Link de la página <input id="link" type="text" name="link" class="input"
+                        value="{{link}}"></label>
+            </div>
+            <div>
+                <label for="pwd" class="label">Contraseña <input class="input" type="text" name="pwd"
+                        value="{{pwd}}"></label>
+            </div>
+            <input type="submit" class="button is-success is-outlined" value="actualizar datos">
+        </form>
+    </div>
+    <p class="content"><a href="{% url 'accounts:inicio' %}" class="tag is-large is-info is-light">Volver atras</a></p>
+    <div class="content"><a href="{% url 'accounts:eliminar-perfil' %}" class="button is-outlined is-danger">Eliminar
+            perfil</a></div>
+
+</body>
+
+</html>
