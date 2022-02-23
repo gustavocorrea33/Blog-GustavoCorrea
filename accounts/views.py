@@ -1,3 +1,4 @@
+from os import device_encoding
 from django.http import HttpResponse
 from django.shortcuts import render, HttpResponseRedirect
 
@@ -22,6 +23,9 @@ from django.contrib.auth.decorators import login_required
 #             "correo": request.user.email,
 #         },
 #     )
+
+def acerca_de_mi (request):
+    return render(request, "acerca_de_mi.html")
 
 
 @login_required

@@ -17,6 +17,8 @@ from .views import (
     contenido_pagina,
     eliminar_contenido,
     actualizar_contenido_post,
+    acerca_de_mi,
+
 )
 
 app_name = "accounts"
@@ -51,4 +53,5 @@ urlpatterns = [
     path("deslogearse/", logout_usuario, name="logica-logout"),
     path("actualizar_datos/", actualizar_datos, name="actualizar-datos"),
     path("elimnar_perfil", eliminar_perfil, name="eliminar-perfil"),
+    path("about/", acerca_de_mi, name="acerca-de-mi")
 ]
